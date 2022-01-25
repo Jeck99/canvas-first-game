@@ -7,8 +7,8 @@ import bricks from "../images/preview_170.png";
 const canvasContext = canvasItem.getContext('2d')
 canvasItem.width = 1024
 canvasItem.height = 576;
-
-let gravity =2;
+let toPlay = true;
+let gravity = 1.5;
 const keys = {
   rightKey: {
     isPresed: false
@@ -66,7 +66,17 @@ class Character {
   }
   CreateCharcter() {
     canvasContext.fillStyle = "red";
-    canvasContext.fillRect(this.position.x, this.position.y, this.width, this.hight)
+    canvasContext.fillRect(this.position.x, this.position.y, this.width, this.hight);
+    const radius = 70;
+
+    // canvasContext.beginPath();
+    // canvasContext.arc(this.position.x, this.position.y, radius, 0, 2 * Math.PI);
+    // canvasContext.lineWidth = 1;
+    // canvasContext.fillStyle = 'yellow';
+    // canvasContext.fill();
+    // canvasContext.strokeStyle = 'red';
+    // // canvasContext.
+    // canvasContext.stroke();
   }
   Move() {
     this.CreateCharcter();
@@ -78,102 +88,82 @@ class Character {
     else { this.movemenet.dirctionY = 0 }
   }
 }
+
 const toolsObjs = [
-  new ToolsObjects(0, 0, 0, 0, CreateImg(bground)),
+  new ToolsObjects(0, 0, 0, 0, utils.CreateImg(bground)),
   // new ToolsObjects(0, 459, 0, 20, CreateImg(mounions)),
   // new ToolsObjects(0, 459, 0, 20, CreateImg(bricks))
 ]
-const player = new Character(100, 100, 100, 100, 0, 20, "start");
-const imagee = CreateImg(platform);
+const imagee = utils.CreateImg(platform);
 const flors = [
   new Floor(0, 459, 0, 20, imagee),
   new Floor(imagee.width, 459, 0, 20, imagee),
   new Floor(imagee.width * 2 + 200, 459, 0, 20, imagee),
 ]
+const player = new Character(95, 200, 100, 100, 0, 20, "start");
 
 // Animation Loop
 const animate = () => {
-  requestAnimationFrame(animate)
-  canvasContext.fillStyle = "white";
-  canvasContext.fillRect(0, 0, canvasItem.width, canvasItem.height)
-  toolsObjs.forEach(obj => {
-    obj.CreateTool()
-  })  
-  flors.forEach(flor => {
-    flor.CreateFloor()
-  })
-  player.Move();
-  if (keys.rightKey.isPresed && player.position.x < 400) {
-    player.movemenet.dirctionX = 5;
-  }
-  else if (keys.leftKey.isPresed && player.position.x > 10) {
-    player.movemenet.dirctionX = -5;
-  }
-  else {
-    player.movemenet.dirctionX = 0;
-    flors.forEach(flor => {
-      if (keys.rightKey.isPresed) {
-        flor.position.x -= 5
-      } else if (keys.leftKey.isPresed) {
-        flor.position.x += 5
-      }
-    })
-    toolsObjs.forEach(toolObj => {
-      if (keys.rightKey.isPresed) {
-        toolObj.position.x -= 2
-      } else if (keys.leftKey.isPresed) {
-        toolObj.position.x += 2
-      }
-    })
-  }
-  flors.forEach(flor => {
-    if (player.position.y + player.hight <= flor.position.y
-      && player.position.y + player.hight + player.movemenet.dirctionY >= flor.position.y
-      && player.position.x + player.width >= flor.position.x
-      && player.position.x <= flor.width + flor.position.x) {
-      player.movemenet.dirctionY = 0
+  console.log("dgfd");
+  let playAgain;
+  setTimeout(() => {
+    toPlay = false;
+    playAgain = confirm("play again?");
+    if (playAgain) {
+      toPlay = true;
     }
-  })
-}
-// Event Listeners
-addEventListener('keydown', ({ key }) => {
-  switch (key) {
-    case "ArrowLeft":
-      keys.leftKey.isPresed = true;
-      return console.log("left");
-    case "ArrowUp":
-      player.movemenet.dirctionY -= 20;
-      return console.log("up");
-    case "ArrowRight":
-      keys.rightKey.isPresed = true;
-      return console.log("right");
-    case "ArrowDown":
-      // player.movemenet.dirctionX -= 10;
-      return console.log("down");
-    default:
-      break;
+  }, 5000)
+  if (toPlay) {
+    requestAnimationFrame(animate);
+    canvasContext.fillStyle = "white";
+    canvasContext.fillRect(0, 0, canvasItem.width, canvasItem.height)
+    toolsObjs.forEach(obj => {
+      obj.CreateTool()
+    })
+    flors.forEach(flor => {
+      flor.CreateFloor()
+    })
+    player.Move();
+    if (keys.rightKey.isPresed && player.position.x < 400) {
+      player.movemenet.dirctionX = 5;
+    }
+    else if (keys.leftKey.isPresed && player.position.x > 10) {
+      player.movemenet.dirctionX = -5;
+    }
+    else {
+      player.movemenet.dirctionX = 0;
+      flors.forEach(flor => {
+        if (keys.rightKey.isPresed) {
+          flor.position.x -= 5
+        } else if (keys.leftKey.isPresed) {
+          flor.position.x += 5
+        }
+      })
+      toolsObjs.forEach(toolObj => {
+        if (keys.rightKey.isPresed) {
+          toolObj.position.x -= 2
+        } else if (keys.leftKey.isPresed) {
+          toolObj.position.x += 2
+        }
+      })
+    }
+    flors.forEach(flor => {
+      if (player.position.y + player.hight <= flor.position.y
+        && player.position.y + player.hight + player.movemenet.dirctionY >= flor.position.y
+        && player.position.x + player.width >= flor.position.x
+        && player.position.x <= flor.width + flor.position.x) {
+        player.movemenet.dirctionY = 0
+      }
+    })
   }
-})
-addEventListener('keyup', ({ key }) => {
-  switch (key) {
-    case "ArrowLeft":
-      keys.leftKey.isPresed = false;
-      return console.log("left");
-    case "ArrowUp":
-      return console.log("up");
-    case "ArrowRight":
-      keys.rightKey.isPresed = false;
-      return console.log("right");
-    case "ArrowDown":
-      return console.log("down");
-    default:
-      break;
-  }
-})
-function CreateImg(imgSrc) {
-  // const image = new Image(width,hight);
-  const image = new Image();
-  image.src = imgSrc;
-  return image;
 }
-animate()
+function init() {
+  // Event Listeners
+  addEventListener('keydown', ({ key }) => { utils.KeysActions(key, keys, player, toPlay) });
+  addEventListener('keyup', ({ key }) => { utils.KeysupActions(key, keys, player) });
+  animate()
+}
+
+init()
+
+// gameButton

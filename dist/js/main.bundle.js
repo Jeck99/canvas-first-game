@@ -148,7 +148,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_utils__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _images_grassy_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../images/grassy.jpg */ "./src/images/grassy.jpg");
 /* harmony import */ var _images_bg_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../images/bg.jpg */ "./src/images/bg.jpg");
 /* harmony import */ var _images_mountion_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/mountion.png */ "./src/images/mountion.png");
@@ -167,7 +166,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var canvasContext = canvasItem.getContext('2d');
 canvasItem.width = 1024;
 canvasItem.height = 576;
-var gravity = 2;
+var toPlay = true;
+var gravity = 1.5;
 var keys = {
   rightKey: {
     isPresed: false
@@ -253,6 +253,14 @@ var Character = /*#__PURE__*/function () {
     value: function CreateCharcter() {
       canvasContext.fillStyle = "red";
       canvasContext.fillRect(this.position.x, this.position.y, this.width, this.hight);
+      var radius = 70; // canvasContext.beginPath();
+      // canvasContext.arc(this.position.x, this.position.y, radius, 0, 2 * Math.PI);
+      // canvasContext.lineWidth = 1;
+      // canvasContext.fillStyle = 'yellow';
+      // canvasContext.fill();
+      // canvasContext.strokeStyle = 'red';
+      // // canvasContext.
+      // canvasContext.stroke();
     }
   }, {
     key: "Move",
@@ -272,14 +280,167 @@ var Character = /*#__PURE__*/function () {
   return Character;
 }();
 
-var toolsObjs = [new ToolsObjects(0, 0, 0, 0, CreateImg(_images_bg_jpg__WEBPACK_IMPORTED_MODULE_2__["default"])) // new ToolsObjects(0, 459, 0, 20, CreateImg(mounions)),
+var toolsObjs = [new ToolsObjects(0, 0, 0, 0, _utils__WEBPACK_IMPORTED_MODULE_0__["default"].CreateImg(_images_bg_jpg__WEBPACK_IMPORTED_MODULE_2__["default"])) // new ToolsObjects(0, 459, 0, 20, CreateImg(mounions)),
 // new ToolsObjects(0, 459, 0, 20, CreateImg(bricks))
 ];
-var player = new Character(100, 100, 100, 100, 0, 20, "start");
-var imagee = CreateImg(_images_grassy_jpg__WEBPACK_IMPORTED_MODULE_1__["default"]);
-var flors = [new Floor(0, 459, 0, 20, imagee), new Floor(imagee.width, 459, 0, 20, imagee), new Floor(imagee.width * 2 + 200, 459, 0, 20, imagee)]; // Animation Loop
+var imagee = _utils__WEBPACK_IMPORTED_MODULE_0__["default"].CreateImg(_images_grassy_jpg__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var flors = [new Floor(0, 459, 0, 20, imagee), new Floor(imagee.width, 459, 0, 20, imagee), new Floor(imagee.width * 2 + 200, 459, 0, 20, imagee)];
+var player = new Character(95, 200, 100, 100, 0, 20, "start"); // Animation Loop
 
 var animate = function animate() {
+  console.log("dgfd");
+  var playAgain;
+  setTimeout(function () {
+    toPlay = false;
+    playAgain = confirm("play again?");
+
+    if (playAgain) {
+      toPlay = true;
+    }
+  }, 5000);
+
+  if (toPlay) {
+    requestAnimationFrame(animate);
+    canvasContext.fillStyle = "white";
+    canvasContext.fillRect(0, 0, canvasItem.width, canvasItem.height);
+    toolsObjs.forEach(function (obj) {
+      obj.CreateTool();
+    });
+    flors.forEach(function (flor) {
+      flor.CreateFloor();
+    });
+    player.Move();
+
+    if (keys.rightKey.isPresed && player.position.x < 400) {
+      player.movemenet.dirctionX = 5;
+    } else if (keys.leftKey.isPresed && player.position.x > 10) {
+      player.movemenet.dirctionX = -5;
+    } else {
+      player.movemenet.dirctionX = 0;
+      flors.forEach(function (flor) {
+        if (keys.rightKey.isPresed) {
+          flor.position.x -= 5;
+        } else if (keys.leftKey.isPresed) {
+          flor.position.x += 5;
+        }
+      });
+      toolsObjs.forEach(function (toolObj) {
+        if (keys.rightKey.isPresed) {
+          toolObj.position.x -= 2;
+        } else if (keys.leftKey.isPresed) {
+          toolObj.position.x += 2;
+        }
+      });
+    }
+
+    flors.forEach(function (flor) {
+      if (player.position.y + player.hight <= flor.position.y && player.position.y + player.hight + player.movemenet.dirctionY >= flor.position.y && player.position.x + player.width >= flor.position.x && player.position.x <= flor.width + flor.position.x) {
+        player.movemenet.dirctionY = 0;
+      }
+    });
+  }
+};
+
+function init() {
+  // Event Listeners
+  addEventListener('keydown', function (_ref) {
+    var key = _ref.key;
+    _utils__WEBPACK_IMPORTED_MODULE_0__["default"].KeysActions(key, keys, player, toPlay);
+  });
+  addEventListener('keyup', function (_ref2) {
+    var key = _ref2.key;
+    _utils__WEBPACK_IMPORTED_MODULE_0__["default"].KeysupActions(key, keys, player);
+  });
+  animate();
+}
+
+init(); // gameButton
+
+/***/ }),
+
+/***/ "./src/js/utils.js":
+/*!*************************!*\
+  !*** ./src/js/utils.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function randomIntFromRange(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function randomColor(colors) {
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function distance(x1, y1, x2, y2) {
+  var xDist = x2 - x1;
+  var yDist = y2 - y1;
+  return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
+}
+
+function CreateImg(imgSrc) {
+  // const image = new Image(width,hight);
+  var image = new Image();
+  image.src = imgSrc;
+  return image;
+}
+
+function KeysActions(key, keys, player, toPlay) {
+  switch (key) {
+    case "ArrowLeft":
+      keys.leftKey.isPresed = true;
+      return console.log("left");
+
+    case "ArrowUp":
+      player.movemenet.dirctionY -= 20;
+      return console.log("up");
+
+    case "ArrowRight":
+      keys.rightKey.isPresed = true;
+      return console.log("right");
+
+    case "ArrowDown":
+      // player.movemenet.dirctionX -= 10;
+      return console.log("down");
+
+    case " ":
+      toPlay = true;
+      return console.log("down:" + toPlay);
+
+    default:
+      break;
+  }
+
+  ;
+}
+
+function KeysupActions(key, keys, player) {
+  switch (key) {
+    case "ArrowLeft":
+      keys.leftKey.isPresed = false;
+      return console.log("left");
+
+    case "ArrowUp":
+      player.movemenet.dirctionY += 20;
+      return console.log("up");
+
+    case "ArrowRight":
+      keys.rightKey.isPresed = false;
+      return console.log("right");
+
+    case "ArrowDown":
+      return console.log("down");
+
+    default:
+      break;
+  }
+} // Animation Loop
+
+
+function animate() {
   requestAnimationFrame(animate);
   canvasContext.fillStyle = "white";
   canvasContext.fillRect(0, 0, canvasItem.width, canvasItem.height);
@@ -318,93 +479,17 @@ var animate = function animate() {
       player.movemenet.dirctionY = 0;
     }
   });
-}; // Event Listeners
-
-
-addEventListener('keydown', function (_ref) {
-  var key = _ref.key;
-
-  switch (key) {
-    case "ArrowLeft":
-      keys.leftKey.isPresed = true;
-      return console.log("left");
-
-    case "ArrowUp":
-      player.movemenet.dirctionY -= 20;
-      return console.log("up");
-
-    case "ArrowRight":
-      keys.rightKey.isPresed = true;
-      return console.log("right");
-
-    case "ArrowDown":
-      // player.movemenet.dirctionX -= 10;
-      return console.log("down");
-
-    default:
-      break;
-  }
-});
-addEventListener('keyup', function (_ref2) {
-  var key = _ref2.key;
-
-  switch (key) {
-    case "ArrowLeft":
-      keys.leftKey.isPresed = false;
-      return console.log("left");
-
-    case "ArrowUp":
-      return console.log("up");
-
-    case "ArrowRight":
-      keys.rightKey.isPresed = false;
-      return console.log("right");
-
-    case "ArrowDown":
-      return console.log("down");
-
-    default:
-      break;
-  }
-});
-
-function CreateImg(imgSrc) {
-  // const image = new Image(width,hight);
-  var image = new Image();
-  image.src = imgSrc;
-  return image;
 }
 
-animate();
-
-/***/ }),
-
-/***/ "./src/js/utils.js":
-/*!*************************!*\
-  !*** ./src/js/utils.js ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function randomIntFromRange(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function randomColor(colors) {
-  return colors[Math.floor(Math.random() * colors.length)];
-}
-
-function distance(x1, y1, x2, y2) {
-  var xDist = x2 - x1;
-  var yDist = y2 - y1;
-  return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
-}
-
-module.exports = {
+/* harmony default export */ __webpack_exports__["default"] = ({
+  animate: animate,
+  CreateImg: CreateImg,
+  KeysActions: KeysActions,
+  KeysupActions: KeysupActions,
   randomIntFromRange: randomIntFromRange,
   randomColor: randomColor,
   distance: distance
-};
+});
 
 /***/ })
 
