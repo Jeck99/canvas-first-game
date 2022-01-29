@@ -86,55 +86,42 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/images/bg.jpg":
-/*!***************************!*\
-  !*** ./src/images/bg.jpg ***!
-  \***************************/
+/***/ "./src/images/Free Pixel Art Forest/PNG/Background layers/Layer_0003_6.png":
+/*!*********************************************************************************!*\
+  !*** ./src/images/Free Pixel Art Forest/PNG/Background layers/Layer_0003_6.png ***!
+  \*********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "b0d57b4d5fbfc4ce256185f6f3c8aa79.jpg");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "b399e1a0316558b00fdca05b935b173e.png");
 
 /***/ }),
 
-/***/ "./src/images/grassy.jpg":
-/*!*******************************!*\
-  !*** ./src/images/grassy.jpg ***!
-  \*******************************/
+/***/ "./src/images/Free Pixel Art Forest/PNG/Background layers/florLayer.png":
+/*!******************************************************************************!*\
+  !*** ./src/images/Free Pixel Art Forest/PNG/Background layers/florLayer.png ***!
+  \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "564d1b3a2d98c4cb78757f7f60c90e0b.jpg");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "0094ec54a4b3f9496838f47b2d8f6652.png");
 
 /***/ }),
 
-/***/ "./src/images/mountion.png":
-/*!*********************************!*\
-  !*** ./src/images/mountion.png ***!
-  \*********************************/
+/***/ "./src/images/Free Pixel Art Forest/bg1.png":
+/*!**************************************************!*\
+  !*** ./src/images/Free Pixel Art Forest/bg1.png ***!
+  \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "aca8d8a78a9f162bb265c9ea7546a423.png");
-
-/***/ }),
-
-/***/ "./src/images/preview_170.png":
-/*!************************************!*\
-  !*** ./src/images/preview_170.png ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "0d07f76e4d65b60449578821f3c96b65.png");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "291c8dd2a741bb4cedd6affb16928f04.png");
 
 /***/ }),
 
@@ -148,20 +135,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
-/* harmony import */ var _images_grassy_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../images/grassy.jpg */ "./src/images/grassy.jpg");
-/* harmony import */ var _images_bg_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../images/bg.jpg */ "./src/images/bg.jpg");
-/* harmony import */ var _images_mountion_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/mountion.png */ "./src/images/mountion.png");
-/* harmony import */ var _images_preview_170_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../images/preview_170.png */ "./src/images/preview_170.png");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+/* harmony import */ var _models__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./models */ "./src/js/models.js");
+/* harmony import */ var _images_Free_Pixel_Art_Forest_PNG_Background_layers_florLayer_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../images/Free Pixel Art Forest/PNG/Background layers/florLayer.png */ "./src/images/Free Pixel Art Forest/PNG/Background layers/florLayer.png");
+/* harmony import */ var _images_Free_Pixel_Art_Forest_bg1_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/Free Pixel Art Forest/bg1.png */ "./src/images/Free Pixel Art Forest/bg1.png");
+/* harmony import */ var _images_Free_Pixel_Art_Forest_PNG_Background_layers_Layer_0003_6_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../images/Free Pixel Art Forest/PNG/Background layers/Layer_0003_6.png */ "./src/images/Free Pixel Art Forest/PNG/Background layers/Layer_0003_6.png");
 
 
 
 
-
+ // import bricks from "../images/Free Pixel Art Forest/PNG/Background layers/Layer_0002_7.png";
 
 var canvasContext = canvasItem.getContext('2d');
 canvasItem.width = 1024;
@@ -175,117 +157,74 @@ var keys = {
   leftKey: {
     isPresed: false
   }
-};
+}; // class ToolsObjects {
+//   constructor(x, y, dirctionX, dirctionY, img) {
+//     this.position = {
+//       x, y
+//     }
+//     this.movemenet = {
+//       dirctionX,
+//       dirctionY
+//     }
+//     this.img = img;
+//     this.img.width = 10000;
+//     this.img.hight = this.img.hight;
+//   }
+//   CreateTool() {
+//     canvasContext.drawImage(this.img, 0, -850,2000,2400);
+//   }
+// }
+// class Floor {
+//   constructor(x, y, dirctionX, dirctionY, img) {
+//     this.position = {
+//       x, y
+//     }
+//     this.movemenet = {
+//       dirctionX,
+//       dirctionY
+//     }
+//     this.img = img;
+//     this.width = this.img.width;
+//     this.hight = this.img.hight;
+//   }
+//   CreateFloor() {
+//     canvasContext.drawImage(this.img, this.position.x, this.position.y);
+//   }
+// }
+// class Character {
+//   constructor(x, y, width, hight, dirctionX, dirctionY, type) {
+//     this.position = {
+//       x, y
+//     }
+//     this.width = width;
+//     this.hight = hight;
+//     this.movemenet = {
+//       dirctionX,
+//       dirctionY
+//     }
+//     this.type = type
+//   }
+//   CreateCharcter() {
+//     canvasContext.fillStyle = "red";
+//     canvasContext.fillRect(this.position.x, this.position.y, this.width, this.hight);
+//   }
+//   Move() {
+//     this.CreateCharcter();
+//     this.position.y += this.movemenet.dirctionY;
+//     this.position.x += this.movemenet.dirctionX;
+//     if (this.position.y + this.hight + this.movemenet.dirctionY+300 <= canvasItem.height) {
+//       this.movemenet.dirctionY += gravity;
+//     }
+//     else { this.movemenet.dirctionY = 0 }
+//   }
+// }
 
-var ToolsObjects = /*#__PURE__*/function () {
-  function ToolsObjects(x, y, dirctionX, dirctionY, img) {
-    _classCallCheck(this, ToolsObjects);
-
-    this.position = {
-      x: x,
-      y: y
-    };
-    this.movemenet = {
-      dirctionX: dirctionX,
-      dirctionY: dirctionY
-    };
-    this.img = img;
-    this.width = this.img.width;
-    this.hight = this.img.hight;
-  }
-
-  _createClass(ToolsObjects, [{
-    key: "CreateTool",
-    value: function CreateTool() {
-      canvasContext.drawImage(this.img, this.position.x, this.position.y);
-    }
-  }]);
-
-  return ToolsObjects;
-}();
-
-var Floor = /*#__PURE__*/function () {
-  function Floor(x, y, dirctionX, dirctionY, img) {
-    _classCallCheck(this, Floor);
-
-    this.position = {
-      x: x,
-      y: y
-    };
-    this.movemenet = {
-      dirctionX: dirctionX,
-      dirctionY: dirctionY
-    };
-    this.img = img;
-    this.width = this.img.width;
-    this.hight = this.img.hight;
-  }
-
-  _createClass(Floor, [{
-    key: "CreateFloor",
-    value: function CreateFloor() {
-      canvasContext.drawImage(this.img, this.position.x, this.position.y);
-    }
-  }]);
-
-  return Floor;
-}();
-
-var Character = /*#__PURE__*/function () {
-  function Character(x, y, width, hight, dirctionX, dirctionY, type) {
-    _classCallCheck(this, Character);
-
-    this.position = {
-      x: x,
-      y: y
-    };
-    this.width = width;
-    this.hight = hight;
-    this.movemenet = {
-      dirctionX: dirctionX,
-      dirctionY: dirctionY
-    };
-    this.type = type;
-  }
-
-  _createClass(Character, [{
-    key: "CreateCharcter",
-    value: function CreateCharcter() {
-      canvasContext.fillStyle = "red";
-      canvasContext.fillRect(this.position.x, this.position.y, this.width, this.hight);
-      var radius = 70; // canvasContext.beginPath();
-      // canvasContext.arc(this.position.x, this.position.y, radius, 0, 2 * Math.PI);
-      // canvasContext.lineWidth = 1;
-      // canvasContext.fillStyle = 'yellow';
-      // canvasContext.fill();
-      // canvasContext.strokeStyle = 'red';
-      // // canvasContext.
-      // canvasContext.stroke();
-    }
-  }, {
-    key: "Move",
-    value: function Move() {
-      this.CreateCharcter();
-      this.position.y += this.movemenet.dirctionY;
-      this.position.x += this.movemenet.dirctionX;
-
-      if (this.position.y + this.hight + this.movemenet.dirctionY <= canvasItem.height) {
-        this.movemenet.dirctionY += gravity;
-      } else {
-        this.movemenet.dirctionY = 0;
-      }
-    }
-  }]);
-
-  return Character;
-}();
-
-var toolsObjs = [new ToolsObjects(0, 0, 0, 0, _utils__WEBPACK_IMPORTED_MODULE_0__["default"].CreateImg(_images_bg_jpg__WEBPACK_IMPORTED_MODULE_2__["default"])) // new ToolsObjects(0, 459, 0, 20, CreateImg(mounions)),
+var toolsObjs = [new _models__WEBPACK_IMPORTED_MODULE_1__["ToolsObjects"](0, 0, 0, 0, _utils__WEBPACK_IMPORTED_MODULE_0__["default"].CreateImg(_images_Free_Pixel_Art_Forest_bg1_png__WEBPACK_IMPORTED_MODULE_3__["default"])) // new ToolsObjects(0, 459, 0, 20, CreateImg(mounions)),
 // new ToolsObjects(0, 459, 0, 20, CreateImg(bricks))
 ];
-var imagee = _utils__WEBPACK_IMPORTED_MODULE_0__["default"].CreateImg(_images_grassy_jpg__WEBPACK_IMPORTED_MODULE_1__["default"]);
-var flors = [new Floor(0, 459, 0, 20, imagee), new Floor(imagee.width, 459, 0, 20, imagee), new Floor(imagee.width * 2 + 200, 459, 0, 20, imagee)];
-var player = new Character(95, 200, 100, 100, 0, 20, "start"); // Animation Loop
+var imagee = _utils__WEBPACK_IMPORTED_MODULE_0__["default"].CreateImg(_images_Free_Pixel_Art_Forest_PNG_Background_layers_florLayer_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
+var flors = [new _models__WEBPACK_IMPORTED_MODULE_1__["Floor"](0, 459, 0, 20, imagee), new _models__WEBPACK_IMPORTED_MODULE_1__["Floor"](imagee.width, 459, 0, 20, imagee), new _models__WEBPACK_IMPORTED_MODULE_1__["Floor"](imagee.width * 2 + 200, 459, 0, 20, imagee)];
+var player = new _models__WEBPACK_IMPORTED_MODULE_1__["Character"](95, 200, 100, 100, 0, 20, "start"); // Animation Loop
 
 var animate = function animate() {
   console.log("dgfd");
@@ -297,19 +236,19 @@ var animate = function animate() {
     if (playAgain) {
       toPlay = true;
     }
-  }, 5000);
+  }, 1000000);
 
   if (toPlay) {
     requestAnimationFrame(animate);
     canvasContext.fillStyle = "white";
     canvasContext.fillRect(0, 0, canvasItem.width, canvasItem.height);
     toolsObjs.forEach(function (obj) {
-      obj.CreateTool();
+      obj.CreateTool(canvasContext);
     });
     flors.forEach(function (flor) {
-      flor.CreateFloor();
+      flor.CreateFloor(canvasContext);
     });
-    player.Move();
+    player.Move(canvasContext);
 
     if (keys.rightKey.isPresed && player.position.x < 400) {
       player.movemenet.dirctionX = 5;
@@ -358,6 +297,119 @@ init(); // gameButton
 
 /***/ }),
 
+/***/ "./src/js/models.js":
+/*!**************************!*\
+  !*** ./src/js/models.js ***!
+  \**************************/
+/*! exports provided: ToolsObjects, Floor, Character */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToolsObjects", function() { return ToolsObjects; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Floor", function() { return Floor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Character", function() { return Character; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var ToolsObjects = /*#__PURE__*/function () {
+  function ToolsObjects(x, y, dirctionX, dirctionY, img) {
+    _classCallCheck(this, ToolsObjects);
+
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.movemenet = {
+      dirctionX: dirctionX,
+      dirctionY: dirctionY
+    };
+    this.img = img;
+    this.width = this.img.width;
+    this.hight = this.img.hight;
+  }
+
+  _createClass(ToolsObjects, [{
+    key: "CreateTool",
+    value: function CreateTool(canvasContext) {
+      canvasContext.drawImage(this.img, this.position.x, this.position.y);
+    }
+  }]);
+
+  return ToolsObjects;
+}();
+var Floor = /*#__PURE__*/function () {
+  function Floor(x, y, dirctionX, dirctionY, img) {
+    _classCallCheck(this, Floor);
+
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.movemenet = {
+      dirctionX: dirctionX,
+      dirctionY: dirctionY
+    };
+    this.img = img;
+    this.width = this.img.width;
+    this.hight = this.img.hight;
+  }
+
+  _createClass(Floor, [{
+    key: "CreateFloor",
+    value: function CreateFloor(canvasContext) {
+      canvasContext.drawImage(this.img, this.position.x, this.position.y);
+    }
+  }]);
+
+  return Floor;
+}();
+var Character = /*#__PURE__*/function () {
+  function Character(x, y, width, hight, dirctionX, dirctionY, type) {
+    _classCallCheck(this, Character);
+
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.width = width;
+    this.hight = hight;
+    this.movemenet = {
+      dirctionX: dirctionX,
+      dirctionY: dirctionY
+    };
+    this.type = type;
+  }
+
+  _createClass(Character, [{
+    key: "CreateCharcter",
+    value: function CreateCharcter(canvasContext) {
+      canvasContext.fillStyle = "red";
+      canvasContext.fillRect(this.position.x, this.position.y, this.width, this.hight);
+    }
+  }, {
+    key: "Move",
+    value: function Move(canvasContext) {
+      this.CreateCharcter(canvasContext);
+      this.position.y += this.movemenet.dirctionY;
+      this.position.x += this.movemenet.dirctionX;
+
+      if (this.position.y + this.hight + this.movemenet.dirctionY <= canvasItem.height) {
+        this.movemenet.dirctionY += gravity;
+      } else {
+        this.movemenet.dirctionY = 0;
+      }
+    }
+  }]);
+
+  return Character;
+}();
+
+/***/ }),
+
 /***/ "./src/js/utils.js":
 /*!*************************!*\
   !*** ./src/js/utils.js ***!
@@ -367,20 +419,6 @@ init(); // gameButton
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function randomIntFromRange(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function randomColor(colors) {
-  return colors[Math.floor(Math.random() * colors.length)];
-}
-
-function distance(x1, y1, x2, y2) {
-  var xDist = x2 - x1;
-  var yDist = y2 - y1;
-  return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
-}
-
 function CreateImg(imgSrc) {
   // const image = new Image(width,hight);
   var image = new Image();
@@ -440,7 +478,7 @@ function KeysupActions(key, keys, player) {
 } // Animation Loop
 
 
-function animate() {
+function animate(canvasContext, flors, player, toolsObjs) {
   requestAnimationFrame(animate);
   canvasContext.fillStyle = "white";
   canvasContext.fillRect(0, 0, canvasItem.width, canvasItem.height);
@@ -485,10 +523,7 @@ function animate() {
   animate: animate,
   CreateImg: CreateImg,
   KeysActions: KeysActions,
-  KeysupActions: KeysupActions,
-  randomIntFromRange: randomIntFromRange,
-  randomColor: randomColor,
-  distance: distance
+  KeysupActions: KeysupActions
 });
 
 /***/ })

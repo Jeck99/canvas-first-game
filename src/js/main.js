@@ -1,8 +1,9 @@
 import utils from './utils'
-import platform from "../images/grassy.jpg";
-import bground from "../images/bg.jpg";
-import mounions from "../images/mountion.png";
-import bricks from "../images/preview_170.png";
+import { Floor,Character,ToolsObjects } from "./models";
+import platform from "../images/Free Pixel Art Forest/PNG/Background layers/florLayer.png";
+import bground from "../images/Free Pixel Art Forest/bg1.png";
+import mounions from "../images/Free Pixel Art Forest/PNG/Background layers/Layer_0003_6.png";
+// import bricks from "../images/Free Pixel Art Forest/PNG/Background layers/Layer_0002_7.png";
 
 const canvasContext = canvasItem.getContext('2d')
 canvasItem.width = 1024
@@ -17,77 +18,67 @@ const keys = {
     isPresed: false
   }
 }
-class ToolsObjects {
-  constructor(x, y, dirctionX, dirctionY, img) {
-    this.position = {
-      x, y
-    }
-    this.movemenet = {
-      dirctionX,
-      dirctionY
-    }
-    this.img = img;
-    this.width = this.img.width;
-    this.hight = this.img.hight;
-  }
-  CreateTool() {
-    canvasContext.drawImage(this.img, this.position.x, this.position.y);
-  }
-}
-class Floor {
-  constructor(x, y, dirctionX, dirctionY, img) {
-    this.position = {
-      x, y
-    }
-    this.movemenet = {
-      dirctionX,
-      dirctionY
-    }
-    this.img = img;
-    this.width = this.img.width;
-    this.hight = this.img.hight;
-  }
-  CreateFloor() {
-    canvasContext.drawImage(this.img, this.position.x, this.position.y);
-  }
-}
-class Character {
-  constructor(x, y, width, hight, dirctionX, dirctionY, type) {
-    this.position = {
-      x, y
-    }
-    this.width = width;
-    this.hight = hight;
-    this.movemenet = {
-      dirctionX,
-      dirctionY
-    }
-    this.type = type
-  }
-  CreateCharcter() {
-    canvasContext.fillStyle = "red";
-    canvasContext.fillRect(this.position.x, this.position.y, this.width, this.hight);
-    const radius = 70;
-
-    // canvasContext.beginPath();
-    // canvasContext.arc(this.position.x, this.position.y, radius, 0, 2 * Math.PI);
-    // canvasContext.lineWidth = 1;
-    // canvasContext.fillStyle = 'yellow';
-    // canvasContext.fill();
-    // canvasContext.strokeStyle = 'red';
-    // // canvasContext.
-    // canvasContext.stroke();
-  }
-  Move() {
-    this.CreateCharcter();
-    this.position.y += this.movemenet.dirctionY;
-    this.position.x += this.movemenet.dirctionX;
-    if (this.position.y + this.hight + this.movemenet.dirctionY <= canvasItem.height) {
-      this.movemenet.dirctionY += gravity;
-    }
-    else { this.movemenet.dirctionY = 0 }
-  }
-}
+// class ToolsObjects {
+//   constructor(x, y, dirctionX, dirctionY, img) {
+//     this.position = {
+//       x, y
+//     }
+//     this.movemenet = {
+//       dirctionX,
+//       dirctionY
+//     }
+//     this.img = img;
+//     this.img.width = 10000;
+//     this.img.hight = this.img.hight;
+//   }
+//   CreateTool() {
+//     canvasContext.drawImage(this.img, 0, -850,2000,2400);
+//   }
+// }
+// class Floor {
+//   constructor(x, y, dirctionX, dirctionY, img) {
+//     this.position = {
+//       x, y
+//     }
+//     this.movemenet = {
+//       dirctionX,
+//       dirctionY
+//     }
+//     this.img = img;
+//     this.width = this.img.width;
+//     this.hight = this.img.hight;
+//   }
+//   CreateFloor() {
+//     canvasContext.drawImage(this.img, this.position.x, this.position.y);
+//   }
+// }
+// class Character {
+//   constructor(x, y, width, hight, dirctionX, dirctionY, type) {
+//     this.position = {
+//       x, y
+//     }
+//     this.width = width;
+//     this.hight = hight;
+//     this.movemenet = {
+//       dirctionX,
+//       dirctionY
+//     }
+//     this.type = type
+//   }
+//   CreateCharcter() {
+//     canvasContext.fillStyle = "red";
+//     canvasContext.fillRect(this.position.x, this.position.y, this.width, this.hight);
+//   }
+//   Move() {
+//     this.CreateCharcter();
+//     this.position.y += this.movemenet.dirctionY;
+//     this.position.x += this.movemenet.dirctionX;
+//     if (this.position.y + this.hight + this.movemenet.dirctionY+300 <= canvasItem.height) {
+//       this.movemenet.dirctionY += gravity;
+//     }
+//     else { this.movemenet.dirctionY = 0 }
+//   }
+// }
 
 const toolsObjs = [
   new ToolsObjects(0, 0, 0, 0, utils.CreateImg(bground)),
@@ -112,18 +103,18 @@ const animate = () => {
     if (playAgain) {
       toPlay = true;
     }
-  }, 5000)
+  }, 1000000)
   if (toPlay) {
     requestAnimationFrame(animate);
     canvasContext.fillStyle = "white";
     canvasContext.fillRect(0, 0, canvasItem.width, canvasItem.height)
     toolsObjs.forEach(obj => {
-      obj.CreateTool()
+      obj.CreateTool(canvasContext)
     })
     flors.forEach(flor => {
-      flor.CreateFloor()
+      flor.CreateFloor(canvasContext)
     })
-    player.Move();
+    player.Move(canvasContext);
     if (keys.rightKey.isPresed && player.position.x < 400) {
       player.movemenet.dirctionX = 5;
     }
